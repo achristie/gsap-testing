@@ -29,14 +29,12 @@ module.exports = {
     // route like /todos/42 would make it wrongly request /todos/42/sockjs-node.
     // The socket server is a part of WebpackDevServer which we are using.
     // The /sockjs-node/ path I'm referring to is hardcoded in WebpackDevServer.
-    require.resolve('webpack-dev-server/client') + '?/',
+    'webpack-dev-server/client?/',
     // Include Webpack hot module replacement runtime. Webpack is pretty
     // low-level so we need to put all the pieces together. The runtime listens
     // to the events received by the client above, and applies updates (such as
     // new CSS) to the running application.
-    require.resolve('webpack/hot/dev-server'),
-    // We ship a few polyfills by default.
-    require.resolve('./polyfills'),
+    'webpack/hot/dev-server',
     // Finally, this is your app's code:
     path.join(paths.appSrc, 'index')
     // We include the app code last so that if there is a runtime error during
@@ -72,13 +70,6 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web'
     }
-  },
-  // Resolve loaders (webpack plugins for CSS, images, transpilation) from the
-  // directory of `react-scripts` itself rather than the project directory.
-  // You can remove this after ejecting.
-  resolveLoader: {
-    root: paths.ownNodeModules,
-    moduleTemplates: ['*-loader']
   },
   module: {
     // First, run the linter.
@@ -167,7 +158,7 @@ module.exports = {
           '>1%',
           'last 4 versions',
           'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
+          'not ie < 11', // React doesn't support IE8 anyway
         ]
       }),
     ];
