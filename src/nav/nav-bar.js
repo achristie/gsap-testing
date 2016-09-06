@@ -1,12 +1,12 @@
 import React from 'react';
-import './nav-bar.css';
+import styles from './nav-bar.css';
 
 const Navbar = () => {
   return (
-    <div className='nav-bar'>
-      <h2> IPREO </h2>
-      <h5> Digital Style Framework </h5>
-      <h6> Version 1.0.0 </h6>
+    <div className={styles.nav}>
+      <h1> IPREO </h1>
+      <h3> Digital Style Framework </h3>
+      <h5> Version 1.0.0 </h5>
     </div>
   );
 };
