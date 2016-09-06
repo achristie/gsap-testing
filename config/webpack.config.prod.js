@@ -86,11 +86,10 @@ module.exports = {
         query: require('./babel.prod')
       },
       // Do not hash selectors for NPM CSS
-      // Do not minify NPM CSS
       {
         test: /\.css$/,
         include: paths.appNodeModules,
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer&-minimize'),
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer'),
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
