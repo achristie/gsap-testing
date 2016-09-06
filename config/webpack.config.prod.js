@@ -85,6 +85,12 @@ module.exports = {
         loader: 'babel',
         query: require('./babel.prod')
       },
+      //Do not hash selectors for NPMd CSS
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer'),
+      },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -107,8 +113,10 @@ module.exports = {
         // Webpack 1.x uses Uglify plugin as a signal to minify *all* the assets
         // including CSS. This is confusing and will be removed in Webpack 2:
         // https://github.com/webpack/webpack/issues/283
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer&modules&localIdentName=[path][name]--[local]---[hash:base64:5]!postcss')
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer&modules&localIdentName=[path][name]--[local]---[hash:base64:5]!postcss'),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+        // Do not use CSSModules against imported css
+        exclude: /node_modules/
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.

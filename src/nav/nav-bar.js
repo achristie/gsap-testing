@@ -3,7 +3,7 @@ import styles from './nav-bar.css';
 
 const Navbar = () => {
   return (
-    <div className={styles.nav}>
+    <div className={styles['nav-bar']}>
       <h1> IPREO </h1>
       <h3> Digital Style Framework </h3>
       <h5> Version 1.0.0 </h5>

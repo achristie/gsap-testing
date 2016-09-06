@@ -89,6 +89,12 @@ module.exports = {
         loader: 'babel',
         query: require('./babel.dev')
       },
+      // Do not use CSS Modules or autoprefixer on NPM Packages
+      {
+        test: /\.css$/,
+        include: /\node_modules/,
+        loader: 'style!css'
+      },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
@@ -96,6 +102,7 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
+        exclude: /\node_modules/,
         loader: 'style!css?modules&localIdentName=[path][name]--[local]---[hash:base64:5]!postcss',
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
