@@ -85,11 +85,12 @@ module.exports = {
         loader: 'babel',
         query: require('./babel.prod')
       },
-      //Do not hash selectors for NPMd CSS
+      // Do not hash selectors for NPM CSS
+      // Do not minify NPM CSS
       {
         test: /\.css$/,
-        include: /node_modules/,
-        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer'),
+        include: paths.appNodeModules,
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer&-minimize'),
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -116,7 +117,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer&modules&localIdentName=[path][name]--[local]---[hash:base64:5]!postcss'),
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
         // Do not use CSSModules against imported css
-        exclude: /node_modules/
+        exclude: paths.appNodeModules
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -179,7 +180,7 @@ module.exports = {
           '>1%',
           'last 4 versions',
           'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
+          'not ie < 11', 
         ]
       }),
     ];
@@ -191,14 +192,14 @@ module.exports = {
       template: paths.appHtml,
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
+        collapseWhitespace: false,
         removeRedundantAttributes: true,
         useShortDoctype: true,
         removeEmptyAttributes: true,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
         minifyJS: true,
-        minifyCSS: true,
+        minifyCSS: false,
         minifyURLs: true
       }
     }),
