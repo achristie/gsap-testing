@@ -73,9 +73,6 @@
       "^[./a-zA-Z0-9$_-]+\\.css$": "<rootDir>\\config\\jest\\CSSStub.js"
     },
     "scriptPreprocessor": "<rootDir>\\config\\jest\\transform.js",
-    "setupFiles": [
-      "<rootDir>\\config\\polyfills.js"
-    ],
     "testPathIgnorePatterns": [
       "<rootDir>/(build|docs|node_modules)/"
     ],
