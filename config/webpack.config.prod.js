@@ -85,6 +85,11 @@ module.exports = {
         loader: 'babel',
         query: require('./babel.prod')
       },
+      {
+        test: /\.scss$/,
+        include:paths.appNodeModules,
+        loader: ExtractTextPlugin.extract('style', 'css?-autoprefixer!sass')
+      },
       // Do not hash selectors for NPM CSS
       {
         test: /\.css$/,

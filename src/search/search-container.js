@@ -6,7 +6,7 @@ const SearchContainer = () => {
   return (
     <div className={styles.container}>
       <Search />
-      <div className='ipreo-alert-black'> Heyo </div>
+      <h4> Test.. </h4>
     </div>
   );
 };

@@ -89,6 +89,12 @@ module.exports = {
         loader: 'babel',
         query: require('./babel.dev')
       },
+      // Use SASS loader for SCSS
+      {
+        test: /\.scss$/,
+        include: paths.appNodeModules,
+        loader: 'style!css!sass'
+      },
       // Do not use CSS Modules or autoprefixer on NPM Packages
       {
         test: /\.css$/,
